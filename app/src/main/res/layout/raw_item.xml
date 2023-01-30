@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="clickListner"
+            type="com.ali.grandtask.presentation.ui.main.adapter.RedditItemClickListener" />
+
+        <variable
+            name="redditItem"
+            type="com.ali.grandtask.domain.models.RedditItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:onClick="@{()->clickListner.onClick(redditItem)}"
+        >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            bindImage="@{redditItem.data.thumbnail}"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toTopOf="@+id/title"
+            app:layout_constraintDimensionRatio="H,1:0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="20dp"
+            android:text="@{redditItem.data.title}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image"
+            tools:text="2020-02-01" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
